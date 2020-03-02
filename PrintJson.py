@@ -58,10 +58,14 @@ def print_json_keys_to_file(collection):
     
     for key in first_document:
         file.write("\n\t" + key)
-        if isinstance(first_document[key], dict) or isinstance(first_document[key], list):
+        if isinstance(first_document[key], dict):
 
             for second_key in first_document[key]:
-                file.write("\n\t\t" + (str(second_key)))
+                file.write("\n\t\t" + second_key)
+                if isinstance(first_document[key][second_key], dict):
+                    
+                    for third_key in first_document[key][second_key]:
+                        file.write("\n\t\t\t" + third_key)
 
     file.write("\n\n")
 
