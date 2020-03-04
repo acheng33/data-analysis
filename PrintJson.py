@@ -31,7 +31,7 @@ def print_json_keys_to_file(collections):
         current_collection = pymongo.collection.Collection(db, collections[counter], create = False)
         counter += 1
         
-        #writes the name of 
+        #writes the name of collection to file
         file.write(current_collection.name)
         first_document = current_collection.find_one()
         
