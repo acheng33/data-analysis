@@ -8,12 +8,12 @@ Ensure that `pymongo` and `json` have been downloaded locally before trying to r
 ## File Descriptions
 #### PrintJson.py
 Prints the document structure of the first document in each collection within a given database into a text file. Each collection name is untabbed with the first layer of the document structure having one tab and each subsequent layer using more tabs. There is a line of white space between collections for identification and ease of reading. For example:
-`
+```
 collection name
     first object
-        values within the object
+        values within first object
     second object
-
-second collection
-`
+    
+second collection name
+```
 To run, run `python3 PrintJson.py`. 
