@@ -45,10 +45,11 @@ for instances in db['best'].find():
 for i in range(0, 12):
     #print("Average Q{} Score of students is: " + str(float(score_0 / count)) + "\n" format(i))
     print("For quiz: " + str(i) + "-----------------------------------------------------------")
-    print("Number of students getting 0 on quiz {} is: ".format(i) + str(float(array[i][0] / student_number)) + "\n")
-    print("Number of students getting (0, 100) on quiz {} is: ".format(i) + str(float(array[i][1] / student_number)) + "\n")
-    print("Number of students getting 100 on quiz {} is: ".format(i) + str(float(array[i][2] / student_number)) + "\n")
+    print("Percentage of students getting 0 on quiz {} is: ".format(i) + str(float(array[i][0] / student_number)) + "\n")
+    print("Percentage of students getting (0, 100) on quiz {} is: ".format(i) + str(float(array[i][1] / student_number)) + "\n")
+    print("Percentage of students getting 100 on quiz {} is: ".format(i) + str(float(array[i][2] / student_number)) + "\n")
 
+print("Number of students in total: " + str(student_number))
 
 labels = ['Getting 0 on Quiz 1', 'Getting (0,100) on Quiz 1', 'Getting 100 on Quiz 1']
 sizes = array[1, :] * 100

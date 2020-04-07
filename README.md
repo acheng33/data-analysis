@@ -8,5 +8,5 @@ Ensure that `pymongo` and `json` have been downloaded locally before trying to r
 ## File Descriptions
 #### my_test.py
 To run, run `python3 my_test.py`. 
-This piece of ocde will print out the percentage of students getting 0, 0~100, 100 respectively in each of the 12 quizzes. An example pie chart will be shown at the end of the execution.
+This piece of code will print out the percentages of students getting 0, 0~100, 100 respectively in each of the 12 quizzes. An example pie chart will be shown at the end of the execution. (also included in the repo)
 
