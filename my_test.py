@@ -6,7 +6,7 @@ import pprint
 import pickle
 import numpy as np
 
-import matplotlib
+import matplotlib.pyplot as plt
 
 from dotenv import load_dotenv
 # load our link 
@@ -50,6 +50,16 @@ for i in range(0, 12):
     print("Number of students getting 100 on quiz {} is: ".format(i) + str(float(array[i][2] / student_number)) + "\n")
 
 
+labels = ['Getting 0 on Quiz 1', 'Getting (0,100) on Quiz 1', 'Getting 100 on Quiz 1']
+sizes = array[1, :] * 100
+sizes.tolist()
+
+fig1, ax1 = plt.subplots()
+ax1.pie(sizes, labels=labels, autopct='%1.1f%%',
+        shadow=True, startangle=90)
+ax1.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
+
+plt.show()
 
 # file = open("MyKeys.pkl", "wb")
 
