@@ -16,10 +16,10 @@ submission_collection = db.plSubmissions
 def create_dictionary():
     count = 0
     dictionary_of_people = {}
+    document = submission_collection.find_one()
 
     #loop through all the documents in the collection
     for document in submission_collection.find():
-        count += 1
         #loops through the fields in the document
         timestamp = None
         email = None
@@ -45,7 +45,14 @@ def create_dictionary():
             #sets email
             if key == "email":
                 email = document[key]
-                
-    return dictionary_of_people
 
-create_dictionary()
+        #adds into the dictionary 
+        if email in dictionary_of_people:
+            if question_id in dictionary_of_people[email]:
+                dictionary_of_people[email][question_id].update({timestamp: score})
+            else:
+                dictionary_of_people[email][question_id] = {timestamp: score}
+        else:
+            dictionary_of_people.update({email : {question_id : {timestamp: score}}})
+
+    return dictionary_of_people
