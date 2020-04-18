@@ -14,9 +14,7 @@ submission_collection = db.plSubmissions
 
 #creates a nested dictionary where each person contains a question id and number of timestamps corresponding to how many times they submitted that question
 def create_dictionary():
-    count = 0
     dictionary_of_people = {}
-    document = submission_collection.find_one()
 
     #loop through all the documents in the collection
     for document in submission_collection.find():
