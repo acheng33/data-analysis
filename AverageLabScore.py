@@ -13,11 +13,8 @@ database_url = os.environ.get("CS125MONGO")
 client = pymongo.MongoClient(database_url)
 db = client.Fall2019Clean
 
-#The number of documents present in this collection
-document_count = db.best.count_documents({})
-
 #A list of every collection present
-field_best = list(db.best.find().limit(document_count))
+field_best = list(db.best.find())
 
 def getMeanLabScores():
 

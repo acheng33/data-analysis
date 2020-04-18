@@ -13,11 +13,8 @@ database_url = os.environ.get("CS125MONGO")
 client = pymongo.MongoClient(database_url)
 db = client.Fall2019Clean
 
-#The number of documents present in this collection
-document_count = db.best.count_documents({})
-
 #A list of every collection present
-field_best = list(db.best.find().limit(document_count))
+field_best = list(db.best.find())
 
 def getMeanHomeworkScores():
 
@@ -29,10 +26,10 @@ def getMeanHomeworkScores():
 
     final_scores = {}
 
-    for lab in homework_numbers:
+    for homework in homework_numbers:
 
         #Appends the current lab number to finish the string
-        current_homework = "HW%s" % (str(lab))
+        current_homework = "HW%s" % (str(homework))
         current_homework_scores = []
 
         for document in field_best:
