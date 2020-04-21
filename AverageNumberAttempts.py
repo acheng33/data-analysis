@@ -3,7 +3,7 @@ import os
 import json
 
 from dotenv import load_dotenv
-from CreateDictionary import create_dictionary
+from TestSmallDictionary import create_dictionary
 
 #loads environment variables and connects to database
 load_dotenv()
@@ -18,10 +18,11 @@ question_collection = db.plQuestions
 
 def get_number_of_attempts():
     assignment_to_average_attempts = {}
+    question_list = list(question_collection.find().sort("ID", 1))
 
     #iterates through each question to get the id
-    for question in question_collection:
-        question_id = question['ID']
+    for i in range(len(question_list)):
+        question_id = question_list[i]['ID']
         people_to_attempts = {}
         total_attempts = 0
 
@@ -35,9 +36,15 @@ def get_number_of_attempts():
             total_attempts += people_to_attempts[person]
         
         #updates the assignment to average dictionary by dividing the total_attempts calculated above by the people who have attempted the question
-        assignment_to_average_attempts.update({question_id: total_attempts / len(people_to_attempts)})
+        if len(people_to_attempts) == 0:
+            assignment_to_average_attempts.update({question_id: 0})
+        else:
+            assignment_to_average_attempts.update({question_id: total_attempts / len(people_to_attempts)})
         
         #clear the dictionary to have it clearn for the next question
         people_to_attempts.clear()
 
-get_number_of_attempts()
+    return assignment_to_average_attempts
+
+resulting_dictionary = get_number_of_attempts()
+
