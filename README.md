@@ -15,14 +15,15 @@ This piece of code performs linear regression using students' final hw, lecture,
 
 
 ## Output Descriptions
-Actual  Predicted
-0   85.00  85.418596
-1   82.75  83.020833
-2   89.83  91.892640
-3   90.58  85.841761
-4   89.75  90.129976
-Mean Absolute Error: 4.528901230422532
-Mean Squared Error: 36.374491435244245
-Root Mean Squared Error: 6.031126879385331
+| index | Actual | Predicted |
+| ----- | ------ | --------- |
+|0      | 85.00  | 85.418596 | 
+|1      | 82.75  | 83.020833 | 
+|2      | 89.83  | 91.892640 | 
+|3      | 90.58  | 85.841761 | 
+|4      | 89.75  | 90.129976 | 
+Mean Absolute Error: 4.528901230422532 <br />
+Mean Squared Error: 36.374491435244245 <br />
+Root Mean Squared Error: 6.031126879385331 <br />
 R Square Error is: 0.9599569544520193
 
