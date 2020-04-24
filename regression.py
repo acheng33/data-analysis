@@ -89,9 +89,33 @@ print('Mean Squared Error:', metrics.mean_squared_error(y_test, y_pred))
 print('Root Mean Squared Error:', np.sqrt(metrics.mean_squared_error(y_test, y_pred)))
 print('R Square Error is:', r2_score(y_test, y_pred))
 
+import sys
 
-plt.show()
+# function for transform input string to output quiz score
+def predict(s):
+    s = s.replace(' ', '')
+    s = s.replace('\n', '')
+    s = s.split(",")
+    if (len(s) != 5): 
+        return "please enter 5 elements"
+    s = np.array(s).astype(np.float32)
+    for i in s:
+        if (i > 100 or i < 0): return "please enter only elements w/ value (0,100)"
+    s = s.reshape(1, -1)
+    result = regressor.predict(s)
+    return result
+
+print("\n")
+print("Please enter params in the following sequence: hw, lecture, lab, mp, exam. Separated by commas, one line at a time. Type quit to exit")
+for line in sys.stdin:
+    if (line == "quit\n"): 
+        break
+    print("Result quiz socore is: ", predict(line), "enter another line or type quit to exit")
+
+
+# # Can show a plot for DF if needed
 # df.plot(kind='bar',figsize=(10,8))
 # plt.grid(which='major', linestyle='-', linewidth='0.5', color='green')
 # plt.grid(which='minor', linestyle=':', linewidth='0.5', color='black')
 # plt.show()
+
