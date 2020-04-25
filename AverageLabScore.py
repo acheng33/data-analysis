@@ -1,4 +1,3 @@
-import seaborn
 from dotenv import load_dotenv
 import pymongo
 import os
@@ -6,7 +5,7 @@ import statistics
 import matplotlib.pyplot as plt
 
 #Loading environment variables
-load_dotenv(dotenv_path="CS125.env")
+load_dotenv(dotenv_path=".env")
 database_url = os.environ.get("CS125MONGO")
 
 #Connecting to the database
@@ -44,15 +43,30 @@ scores = getMeanLabScores()
 
 x = list(scores.keys())
 y = list(scores.values())
-barplot = seaborn.barplot(x, y)
-bars = plt.bar(x, y)
 
+colors = {1 : 'darkgreen', 2 : 'royalblue'}
+bar_colors = []
+is_green_bar = True
+
+for value in x:
+    if is_green_bar:
+        bar_colors.append(1)
+        is_green_bar = False
+    else:
+        bar_colors.append(2)
+        is_green_bar = True
+
+bars = plt.bar(x, y, edgecolor='black', color=[colors[elem] for elem in bar_colors])
 
 for bar in bars:
     yval = bar.get_height()
     plt.text(bar.get_x(), yval + 1, round(yval, 2))
 
+plt.title("Lab Score Distributions")
+plt.xlabel("Lab Assignments")
+plt.ylabel("Scores")
 plt.plot()
+plt.savefig("Lab_Score_Distributions.png")
 plt.show()
 
 

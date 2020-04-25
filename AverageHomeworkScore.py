@@ -3,10 +3,10 @@ import pymongo
 import os
 import statistics
 import matplotlib.pyplot as plt
-import seaborn
+
 
 #Loading environment variables
-load_dotenv(dotenv_path="CS125.env")
+load_dotenv(dotenv_path=".env")
 database_url = os.environ.get("CS125MONGO")
 
 #Connecting to the database
@@ -44,14 +44,29 @@ scores = getMeanHomeworkScores()
 x = list(scores.keys())
 y = list(scores.values())
 
-bars = plt.bar(x, y)
+colors = {1 : 'darkolivegreen', 2 : 'teal'}
+bar_colors = []
+is_green_bar = True
+
+for value in x:
+    if is_green_bar:
+        bar_colors.append(1)
+        is_green_bar = False
+    else:
+        bar_colors.append(2)
+        is_green_bar = True
+
+bars = plt.bar(x, y, edgecolor='black', color=[colors[elem] for elem in bar_colors])
+
 plt.xticks(x, x, rotation=90)
 
-for bar in bars:
-    yval = bar.get_height()
-    plt.text(bar.get_x(), yval + 1, int(round(yval, 1)))
-
+figure = plt.gcf()
+figure.set_size_inches(14, 10.8)
+plt.title("Homework Score Distributions")
+plt.xlabel("Homework Assignments")
+plt.ylabel("Scores")
 plt.plot()
+plt.savefig("Homework_Score_Distributions.png", dpi=100)
 plt.show()
 
 

@@ -5,7 +5,7 @@ import json
 from dotenv import load_dotenv
 
 #load in environment variables
-load_dotenv(dotenv_path="CS125.env")
+load_dotenv(dotenv_path=".env")
 database_url = os.environ.get("CS125MONGO")
 
 #connect to the mongo database
