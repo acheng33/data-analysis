@@ -3,6 +3,7 @@ import pymongo
 import os
 from collections import Counter
 import matplotlib.pyplot as plt
+import sys
 
 # Loading environment variables
 load_dotenv(dotenv_path=".env")

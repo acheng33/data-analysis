@@ -3,6 +3,8 @@ import pymongo
 import os
 from collections import Counter
 import matplotlib.pyplot as plt
+import sys
+import json
 
 # Loading environment variables
 load_dotenv(dotenv_path=".env")
@@ -51,35 +53,52 @@ def StudentQuestionAccuracy():
                 fractions_score[question]["Numerator"] += 1
     return fractions_score
 
-scores = StudentQuestionAccuracy()
+'''scores = StudentQuestionAccuracy()
+with open("StudentProbabilities.json", "w") as file:
+    json.dump(scores, file)'''
 
-x = []
-y = []
+def PlotChosenAssignment():
+    data = None
+    with open("StudentProbabilities.json", "r") as file:
+        data = json.load(file)
+    year = sys.argv[1]
+    selected_assignment = sys.argv[2]
+    selected_assignment = year + "_" + selected_assignment
 
-for question in scores:
-    x.append(question)
-    numerator = scores[question]["Numerator"]
-    denominator = scores[question]["Denominator"]
-    y.append((numerator / denominator) * 100)
+    x = []
+    y = []
 
-colors = {1 : 'darkgreen', 2 : 'royalblue'}
-bar_colors = []
-is_green_bar = True
+    for question in data:
+        if selected_assignment in question:
+            name = question.replace(selected_assignment, "")
+            name = name.replace("_", "")
+            x.append(name)
+            numerator = data[question]["Numerator"]
+            denominator = data[question]["Denominator"]
+            y.append((numerator / denominator) * 100)
 
-for value in x:
-    if is_green_bar:
-        bar_colors.append(1)
-        is_green_bar = False
-    else:
-        bar_colors.append(2)
-        is_green_bar = True
+    colors = {1 : 'darkgreen', 2 : 'royalblue'}
+    bar_colors = []
+    is_green_bar = True
 
-bars = plt.bar(x, y, edgecolor='black', color=[colors[elem] for elem in bar_colors])
-plt.xticks(x, x, rotation=90)
+    for value in x:
+        if is_green_bar:
+            bar_colors.append(1)
+            is_green_bar = False
+        else:
+            bar_colors.append(2)
+            is_green_bar = True
 
-plt.title("Percentage Of Students Who Got More Than 0 Points")
-plt.xlabel("Questions")
-plt.ylabel("Percentages")
-plt.plot()
-plt.savefig("Student_Question_Accuracy.png")
-plt.show()
+    bars = plt.bar(x, y, edgecolor='black', color=[colors[elem] for elem in bar_colors])
+
+    # Assigns the average score above each bar
+
+    plt.xticks(x, x, rotation=45)
+    plt.title("Percentage Of Students Who Got More Than 0 Points in each question")
+    plt.xlabel(selected_assignment)
+    plt.ylabel("Percentages")
+    plt.plot()
+    plt.savefig("Student_Question_Accuracy.png")
+    plt.show()
+
+PlotChosenAssignment()
