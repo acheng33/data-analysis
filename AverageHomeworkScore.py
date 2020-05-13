@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 
 
 #Loading environment variables
-load_dotenv(dotenv_path=".env")
+load_dotenv()
 database_url = os.environ.get("CS125MONGO")
 
 #Connecting to the database
