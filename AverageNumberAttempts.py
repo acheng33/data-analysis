@@ -1,9 +1,10 @@
 import pymongo
 import os
 import json
+import matplotlib.pyplot as plt
 
 from dotenv import load_dotenv
-from TestSmallDictionary import create_dictionary
+from CreateDictionary import create_dictionary
 
 #loads environment variables and connects to database
 load_dotenv()
@@ -48,3 +49,90 @@ def get_number_of_attempts():
 
 resulting_dictionary = get_number_of_attempts()
 
+#Should merge all the exam, labs, homeworks from different versions into one coherent name
+x_values = list(resulting_dictionary.keys())
+y_values = list(resulting_dictionary.values())
+
+exam_x_values = []
+exam_y_values = []
+
+homework_x_values = []
+homework_y_values = []
+
+lab_x_values = []
+lab_y_values = []
+
+quiz_x_values = []
+quiz_y_values = []
+
+for value in range(len(x_values)):
+    if ('E0' in x_values[value]) or ('E1' in x_values[value]) or ('E2' in x_values[value]):
+        exam_x_values.append(x_values[value][10:])
+        exam_y_values.append(y_values[value])
+    elif 'HW' in x_values[value]:
+        homework_x_values.append(x_values[value][10:])
+        homework_y_values.append(y_values[value])
+    elif 'Lab' in x_values[value]:
+        lab_x_values.append(x_values[value][10:])
+        lab_y_values.append(y_values[value])
+    elif 'Q' in x_values[value]:
+        quiz_x_values.append(x_values[value][10:])
+        quiz_y_values.append(y_values[value])
+
+#Creates bar chart for average number of exam tries
+bars = plt.bar(exam_x_values, exam_y_values, edgecolor = 'black', color = 'violet')
+plt.xticks(exam_x_values, exam_x_values, rotation = 90)
+
+figure = plt.gcf()
+figure.set_size_inches(18, 14)
+
+plt.title("Average Number of Attempts per Question (Midterm)")
+plt.xlabel("Question")
+plt.ylabel("Number of Tries")
+plt.plot()
+
+plt.savefig("Average_Attempts_Exam.png")
+plt.clf()
+
+#Creates bar chart for average number of homework tries
+bars = plt.bar(homework_x_values, homework_y_values, edgecolor = 'black', color = 'mediumslateblue')
+plt.xticks(homework_x_values, homework_x_values, rotation = 90)
+
+figure = plt.gcf()
+figure.set_size_inches(18, 14)
+
+plt.title("Average Number of Attempts per Question (Homework)")
+plt.xlabel("Question")
+plt.ylabel("Number of Tries")
+plt.plot()
+
+plt.savefig("Average_Attempts_Homework.png")
+plt.clf()
+
+#Creates bar chart for average number of lab tries
+bars = plt.bar(lab_x_values, lab_y_values, edgecolor = 'black', color = 'lightskyblue')
+plt.xticks(lab_x_values, lab_x_values, rotation = 90)
+
+figure = plt.gcf()
+
+plt.title("Average Number of Attempts per Question (Labs)")
+plt.xlabel("Question")
+plt.ylabel("Number of Tries")
+plt.plot()
+
+plt.savefig("Average_Attempts_Labs.png")
+plt.clf()
+
+#Creates bar chart for average number of quiz tries
+bars = plt.bar(quiz_x_values, quiz_y_values, edgecolor = 'black', color = 'mediumspringgreen')
+plt.xticks(quiz_x_values, quiz_x_values, rotation = 90)
+
+figure = plt.gcf()
+
+plt.title("Average Number of Attempts per Question (Quiz)")
+plt.xlabel("Question")
+plt.ylabel("Number of Tries")
+plt.plot()
+
+plt.savefig("Average_Attempts_Quizzes.png")
+plt.clf()
