@@ -60,7 +60,7 @@ This piece of code performs linear regression using students' final hw, lecture,
 - User Input
     - User will be prompted to type in a string in the format of hw, lecture, lab, mp, exam, quiz (in decimal numbers, representing scores for each category) and press Enter to get the result of predicted quiz score based upon the user input. 
 
-- Output Description
+- Output Description <br />
 | index | Actual | Predicted |
 | ----- | ------ | --------- |
 |0      | 85.00  | 85.418596 | 
@@ -68,7 +68,7 @@ This piece of code performs linear regression using students' final hw, lecture,
 |2      | 89.83  | 91.892640 | 
 |3      | 90.58  | 85.841761 | 
 |4      | 89.75  | 90.129976 | 
-
+-----------------------------
 Mean Absolute Error: 4.528901230422532 <br />
 Mean Squared Error: 36.374491435244245 <br />
 Root Mean Squared Error: 6.031126879385331 <br />
