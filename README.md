@@ -70,3 +70,18 @@ Mean Squared Error: 36.374491435244245 <br />
 Root Mean Squared Error: 6.031126879385331 <br />
 R Square Error is: 0.9599569544520193
 
+# average_homework_scores, average_lab_scores, etc.
+CS 125 Course Development 
+## Required files
+A `.env` file with the required environment variables is needed. The libraries `pymongo`, `matplotlib`, and `json` are also required.
+
+## Files
+#### AverageHomeworkScore.py
+This program will generate a graph displaying the mean score per homework assignment for Fall 2019. Changing the db variable's client should enable other semesters' data to be plotted. 
+#### AverageLabScore.py
+This program will generate a graph displaying the mean score per lab assignment for Fall 2019. Changing the db variable's client should enable other semesters' data to be plotted. 
+#### SubmissionAccuracy.py 
+This program will generate a graph containing the number of submissions that got a score greater than 0 per homework assignment, lab, quiz and midterm. Each student can have multiple submissions.
+#### StudentQuestionAccuracy.py
+This program will generate a graph containing the number of students that got a final score greater than 0 for every question in the homework, labs and quizzes. It requires 2 arguments. The first argument must be the year and semester of the client, in the format "year_semester". For example, Fall 2019 would be passed as "2019_Fall". The second argument is the specific homework, lab or quiz for which the graph is required. For example, entering "Q6" would generate the graph containing ever question and the data from quiz 6. 
+
