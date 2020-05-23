@@ -41,7 +41,7 @@ This piece of code will save the data containing students' final hw, lecture, la
 #### regression.py
 This piece of code performs linear regression using students' final hw, lecture, lab, mp, exam scores as inputs and quiz scores as target. It prints out the first five lines of (actual, predicted) pairs that are generated using the validation set as well as various error indices. In terms of RMSE (< 10% mean), this prediction using a linear model is mediocre but usable. Example outputs are shown below. 
 
-##### user input in regression.py
+#### user input in regression.py
 User will be prompted to type in a string in the format of hw, lecture, lab, mp, exam, quiz (in decimal numbers, representing scores for each category) and press Enter to get the result of predicted quiz score based upon the user input. 
 
 ## Output Descriptions
@@ -52,7 +52,7 @@ User will be prompted to type in a string in the format of hw, lecture, lab, mp,
 |2      | 89.83  | 91.892640 | 
 |3      | 90.58  | 85.841761 | 
 |4      | 89.75  | 90.129976 | 
------------------------------
+
 Mean Absolute Error: 4.528901230422532 <br />
 Mean Squared Error: 36.374491435244245 <br />
 Root Mean Squared Error: 6.031126879385331 <br />
