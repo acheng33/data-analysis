@@ -3,7 +3,22 @@ CS 125 Course Development
 
 ## Setup
 In order to set up your environment properly, you will need a `.env` file which should include any environment variables that will need to be used in the files of code. 
-Ensure that `pymongo` and `json` have been downloaded locally before trying to run to ensure correct results. 
+
+## Dependencies
+- `dotenv`
+- `pymongo`
+- `os`
+- `statistics`
+- `matplotlib`
+- `json`
+- `pprint`
+- `pickle`
+- `numpy`
+- `pandas`
+- `seaborn`
+- `sklearn`
+- `sys`
+- `collections`
 
 ## File Descriptions
 #### PrintJson.py
@@ -16,45 +31,18 @@ collection name
     
 second collection name
 ```
-To run, run `python3 PrintJson.py`. 
 
-
-# state-students-endup-in-quiz
-## File Descriptions
 #### exam_state.py
-To run, run `python3 exam_state.py`. 
 This piece of code will print out the percentages of students getting 0, 0~100, 100 respectively in each of the 12 quizzes. An example pie chart will be shown at the end of the execution. (also included in the repo)
-=======
-#### PrintJson.py
-Prints the document structure of the first document in each collection within a given database into a text file. Each collection name is untabbed with the first layer of the document structure having one tab and each subsequent layer using more tabs. There is a line of white space between collections for identification and ease of reading. For example:
-```
-collection name
-    first object
-        values within first object
-    second object
-    
-second collection name
-```
-To run, run `python3 PrintJson.py`. 
 
-# regression-for-quiz-scores
-CS 125 Course Development
-
-## Setup
-In order to set up your environment properly, you will need a `.env` file which should include any environment variables that will need to be used in the files of code. 
-Ensure that `pymongo` and `json` have been downloaded locally before trying to run to ensure correct results. 
-
-## File Descriptions
 #### matrix.py
-To run, run `python3 matrix.py`. 
 This piece of code will save the data containing students' final hw, lecture, lab, mp, exam, quiz scores in a csv file called `student_scores.csv`
+
 #### regression.py
-To run, run `python3 regression.py`.  <br />
-This piece of code performs linear regression using students' final hw, lecture, lab, mp, exam scores as inputs and quiz scores as target. It prints out the first five lines of (actual, predicted) pairs that are generated using the validation set as well as various error indices. In terms of RMSE (< 10% mean), this prediction using a linear model is mediocre but usable. Example outputs are shown below.  <br />
-#### user input in regression.py
+This piece of code performs linear regression using students' final hw, lecture, lab, mp, exam scores as inputs and quiz scores as target. It prints out the first five lines of (actual, predicted) pairs that are generated using the validation set as well as various error indices. In terms of RMSE (< 10% mean), this prediction using a linear model is mediocre but usable. Example outputs are shown below. 
+
+##### user input in regression.py
 User will be prompted to type in a string in the format of hw, lecture, lab, mp, exam, quiz (in decimal numbers, representing scores for each category) and press Enter to get the result of predicted quiz score based upon the user input. 
-
-
 
 ## Output Descriptions
 | index | Actual | Predicted |
@@ -70,12 +58,6 @@ Mean Squared Error: 36.374491435244245 <br />
 Root Mean Squared Error: 6.031126879385331 <br />
 R Square Error is: 0.9599569544520193
 
-# average_homework_scores, average_lab_scores, etc.
-CS 125 Course Development 
-## Required files
-A `.env` file with the required environment variables is needed. The libraries `pymongo`, `matplotlib`, and `json` are also required.
-
-## Files
 #### AverageHomeworkScore.py
 This program will generate a graph displaying the mean score per homework assignment for Fall 2019. Changing the db variable's client should enable other semesters' data to be plotted. 
 #### AverageLabScore.py
@@ -85,3 +67,11 @@ This program will generate a graph containing the number of submissions that got
 #### StudentQuestionAccuracy.py
 This program will generate a graph containing the number of students that got a final score greater than 0 for every question in the homework, labs and quizzes. It requires 2 arguments. The first argument must be the year and semester of the client, in the format "year_semester". For example, Fall 2019 would be passed as "2019_Fall". The second argument is the specific homework, lab or quiz for which the graph is required. For example, entering "Q6" would generate the graph containing every question and the data from quiz 6. 
 
+#### CreateDictionary.py
+Creates a nested dictionary for use in other files. Dictionary formatted as such:
+```
+{student_email: {question_id: {timestamp : score}}}
+```
+
+#### AverageNumberAttempts.py
+Generates png images that house bargraphs of average number of tries on a question to the name of the question along with the version if applicable. Average number of tries has been listed above each bar to help with clarity. 
